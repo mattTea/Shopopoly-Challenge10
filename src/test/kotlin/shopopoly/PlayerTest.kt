@@ -9,17 +9,12 @@ object PlayerTest : Spek({
 
     describe("player") {
 
-        val player = Player(
-            name = "Matt",
-            boardLocation = 6
-        )
-
         it("should have a name") {
-            assertThat(player.name).isEqualTo("Matt")
+            assertThat(Player("Matt", 6).name).isEqualTo("Matt")
         }
 
         it("should have a board location") {
-            assertThat(player.boardLocation).isEqualTo(6)
+            assertThat(Player("Matt", 6).boardLocation).isEqualTo(6)
         }
     }
 })

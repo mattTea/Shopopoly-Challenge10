@@ -40,3 +40,4 @@ You will probably need to create a mechanism for determining the sequence of eac
 
 1. `Player` has name property
 2. `Player` has boardLocation property
+3. `Dice` has 2 interger values

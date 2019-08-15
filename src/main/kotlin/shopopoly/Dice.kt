@@ -1,6 +1,8 @@
 package shopopoly
 
+import kotlin.random.Random.Default.nextInt
+
 data class Dice(
-    val firstDie: Int = 1,
-    val secondDie: Int = 2
+    val firstDie: Int = nextInt(1, 7),
+    val secondDie: Int = nextInt(1, 7)
 )
