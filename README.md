@@ -30,7 +30,7 @@ Please assume the board has at least 13 Locations on it so you can’t pass thro
 ## Some tips
 
 You don’t need to have completed Challenge 8 or Challenge 9 to complete this challenge.
-The Location data type can just be a simple class or interface but you may need a way to detect whether a location is the location for the go square so you can work out when someone passes go.
+The `Location` data type can just be a simple class or interface but you may need a way to detect whether a location is the location for the go square so you can work out when someone passes go.
 
 You will probably need to create a mechanism for determining the sequence of each location on the board.
 
@@ -40,4 +40,6 @@ You will probably need to create a mechanism for determining the sequence of eac
 
 1. `Player` has name property
 2. `Player` has boardLocation property
-3. `Dice` has 2 interger values
+3. `Dice` has 2 integer values
+4. `Dice` randomly returns value between 2 and 12
+5. Create `move` function on `Player` -> add `Dice` to `boardLocation` to create new `boardLocation`

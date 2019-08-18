@@ -1,6 +1,9 @@
 package shopopoly
 
-data class Player(
-    val name: String,
-    val boardLocation: Int
-)
+class Player(val name: String, var boardLocation: Int = 0) {
+
+    fun move(diceScore: Dice = Dice()): Int {
+        boardLocation += (diceScore.firstDie + diceScore.secondDie)
+        return boardLocation
+    }
+}
