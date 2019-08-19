@@ -22,14 +22,22 @@ object PlayerTest : Spek({
 
     describe("move") {
 
+        val diceMock = mockk<Dice>()
+
+        every { diceMock.firstDie } returns(4)
+        every { diceMock.secondDie } returns(3)
+
         it("should add dice roll score to boardLocation") {
             val player = Player("Matt", 5)
-            val diceMock = mockk<Dice>()
-
-            every { diceMock.firstDie } returns(4)
-            every { diceMock.secondDie } returns(3)
 
             assertThat(player.move(diceMock)).isEqualTo(12)
+        }
+
+        it("should restart boardLocation to 1 after moving past 13") {
+            val player = Player("Matt", 12)
+
+            player.move(diceMock)
+            assertThat(player.boardLocation).isEqualTo(6)
         }
     }
 })
