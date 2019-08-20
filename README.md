@@ -43,3 +43,5 @@ You will probably need to create a mechanism for determining the sequence of eac
 3. `Dice` has 2 integer values
 4. `Dice` randomly returns value between 2 and 12
 5. Create `move` function on `Player` -> add `Dice` to `boardLocation` to create new `boardLocation`
+6. `boardLocation` to reset to 1 after passing 13
+7. `boardLocation` of 1 to be the 'Go' square
