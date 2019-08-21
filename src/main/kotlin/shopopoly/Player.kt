@@ -1,18 +1,23 @@
 package shopopoly
 
-class Player(val name: String, var boardLocation: Int = 1) {
+class Player(
+    val name: String,
+    val boardLocation: Int = 1,
+    val passedGo: Boolean = false
+) {
 
-    var passedGo = false
+    fun move(diceScore: Int = Dice().score()): Player {
+        val calculateBoardLocation = this.boardLocation + diceScore
+        val newBoardLocation =
+            when (calculateBoardLocation > 13) {
+                true -> calculateBoardLocation - 13
+                false -> calculateBoardLocation
+            }
 
-    fun move(diceScore: Dice = Dice()): Int {
-        passedGo = false
-        boardLocation += (diceScore.firstDie + diceScore.secondDie)
-
-        if (boardLocation > 13) {
-            boardLocation -= 13
-            passedGo = true
-        }
-
-        return boardLocation
+        return Player(
+            name = this.name,
+            boardLocation = newBoardLocation,
+            passedGo = calculateBoardLocation > 13
+        )
     }
 }

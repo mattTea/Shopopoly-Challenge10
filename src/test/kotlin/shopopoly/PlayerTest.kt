@@ -25,47 +25,30 @@ object PlayerTest : Spek({
     describe("move") {
 
         val diceMock = mockk<Dice>()
+        every { diceMock.score() } returns(7)
+
         val diceMock2 = mockk<Dice>()
-
-        every { diceMock.firstDie } returns(4)
-        every { diceMock.secondDie } returns(3)
-
-        every { diceMock2.firstDie } returns(2)
-        every { diceMock2.secondDie } returns(2)
+        every { diceMock2.score() } returns(4)
 
         it("should add dice roll score to boardLocation") {
             val player = Player("Matt", 5)
-
-            assertThat(player.move(diceMock)).isEqualTo(12)
+            assertThat(player.move(diceMock.score()).boardLocation).isEqualTo(12)
         }
 
         it("should restart boardLocation to 1 after moving past 13") {
             val player = Player("Matt", 12)
-
-            player.move(diceMock)
-            assertThat(player.boardLocation).isEqualTo(6)
+            assertThat(player.move(diceMock.score()).boardLocation).isEqualTo(6)
         }
 
         it("should set passedGo to true if location 13 is passed") {
             val player = Player("Matt", 12)
-            player.move(diceMock)
-            assertThat(player.passedGo).isTrue()
+            assertThat(player.move(diceMock.score()).passedGo).isTrue()
         }
 
         it("should not set passedGo to true if location 13 is not passed") {
             val player = Player("Matt", 2)
+            player.move(diceMock2.score())
 
-            player.move(diceMock2)
-            assertThat(player.passedGo).isFalse()
-        }
-
-        it("should reset passedGo to false for next move") {
-            val player = Player("Matt", 12)
-
-            player.move(diceMock)
-            assertThat(player.passedGo).isTrue()
-
-            player.move(diceMock2)
             assertThat(player.passedGo).isFalse()
         }
     }
